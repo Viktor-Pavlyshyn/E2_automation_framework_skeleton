@@ -1,0 +1,12 @@
+.idea/*
+.allure/*
+target/*
+logs/*
+build/*
+
+*.class
+
+*.war
+*.jar
+*.ear
+*.iml

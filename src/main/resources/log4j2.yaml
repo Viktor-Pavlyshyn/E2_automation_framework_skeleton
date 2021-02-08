@@ -1,0 +1,32 @@
+Configuration:
+  pakagees: "com.epam"
+  name: Log4j2_Config
+  properties:
+    property:
+      name: log-path
+      value: logs
+  #-------------------------------------
+  appenders:
+    Console:
+      name: console
+      PatternLayout:
+        Pattern: "[%-p] %d{yyyy-MM-dd HH:mm:ss.SSS} %c{1}:%M:%L - %m%n"
+    RollingFile:
+      name: rootRollFile
+      filePattern: target/${log-path}/archve/rolFile.log.%d{yyyy-MM-dd}.gz
+      PatternLayout:
+        Pattern: "[%-p] %d{yyyy-MM-dd HH:mm:ss.SSS} %c{1}:%M:%L - %m%n"
+      Policies:
+        TimeBasedTriggeringPolicy:
+          interval: 1
+          modulate: true
+  #-------------------------------------
+  Loggers:
+    Root:
+      level: all
+      AppenderRef:
+        - ref: rootRollFile
+          level: trace
+
+        - ref: console
+          level: trace
