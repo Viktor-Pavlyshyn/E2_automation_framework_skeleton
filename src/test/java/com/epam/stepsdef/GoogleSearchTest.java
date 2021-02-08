@@ -2,9 +2,11 @@ package com.epam.stepsdef;
 
 import com.epam.businessobject.GoogleSearchBO;
 import com.epam.businessobject.ResultSearchGoogleBO;
+import io.cucumber.java.After;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 
+import static com.epam.webdriver.LocalDriverManager.closeDriver;
 import static com.epam.webdriver.LocalDriverManager.getWebDriver;
 import static org.junit.Assert.*;
 
@@ -28,5 +30,10 @@ public class GoogleSearchTest {
         String response = new ResultSearchGoogleBO().getTitleValue();
 
         assertTrue(String.format("Title does not contains - '%s'.", text), new ResultSearchGoogleBO().getTitleValue().toLowerCase().contains(text));
+    }
+
+    @After
+    public void closeSite() {
+        closeDriver();
     }
 }
