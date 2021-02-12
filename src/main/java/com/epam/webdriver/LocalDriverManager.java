@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import static com.epam.webdriver.LocalDriverFactory.createWebDriver;
 
 @Log4j2
+//TODO Why Local
 public class LocalDriverManager {
     private static final ThreadLocal<WebDriver> DRIVER_POOL = new ThreadLocal<>();
 
@@ -14,6 +15,7 @@ public class LocalDriverManager {
             synchronized (LocalDriverManager.class) {
                 if (DRIVER_POOL.get() == null) {
                     log.info("Setting WebDriver to DRIVER_POOL.");
+                    //TODO Refactor using AbstractFactory pattern
                     DRIVER_POOL.set(createWebDriver());
                 }
             }
