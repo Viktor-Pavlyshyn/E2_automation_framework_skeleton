@@ -8,6 +8,8 @@
     <artifactId>E2_automation_framework_skeleton</artifactId>
     <version>1.0</version>
 
+<!-- TODO try to split by modules reflection and taf -->
+
     <build>
         <plugins>
             <plugin>
@@ -25,6 +27,8 @@
                 <version>2.20</version>
                 <configuration>
                     <argLine>
+
+<!--TODO Check Allure-->
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                         -Dcucumber.options="--plugin io.qameta.allure.cucumber6jvm.AllureCucumber6Jvm"
                     </argLine>

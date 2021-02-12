@@ -11,6 +11,7 @@ public class ResultSearchGoogleBO {
     }
 
     public String getTitleValue(){
+        //TODO hardcoded wikipedia. It should be possible to get any needed title by parameters
         return resultSearchGooglePage.getWikipediaTitle().getText();
     }
 }
