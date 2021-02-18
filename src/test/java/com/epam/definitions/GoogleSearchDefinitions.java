@@ -27,10 +27,11 @@ public class GoogleSearchDefinitions {
 
     }
 
-    @Then("verify if first link contains text {string}")
-    public void verifyTitle(String text) {
+    @Then("verify link on position {int} contains text {string}")
+    public void verifyTitle(int position, String text) {
 
-        final String response = new ResultSearchGoogleBO().getLinkText();
+        final String response = new ResultSearchGoogleBO()
+                .getLinkTextByPosition(position);
 
         assertTrue(String.format("Text does not contains - '%s'.", text), response.matches("([\\s\\S]*)" + text + "([\\s\\S]*)"));
     }

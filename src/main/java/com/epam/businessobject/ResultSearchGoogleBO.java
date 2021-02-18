@@ -10,8 +10,7 @@ public class ResultSearchGoogleBO {
         this.resultSearchGooglePage = new ResultSearchGooglePage();
     }
 
-    public String getLinkText() {
-        //TODO hardcoded wikipedia. It should be possible to get any needed title by parameters
-        return resultSearchGooglePage.getFirstLinkApple().getText();
+    public String getLinkTextByPosition(int linkNumber) {
+        return resultSearchGooglePage.getListTextLinks().get(linkNumber);
     }
 }
