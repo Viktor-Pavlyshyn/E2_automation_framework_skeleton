@@ -6,6 +6,15 @@ import reflection.data.SubClass;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.stream.Stream;
+
+/*
+ *TODO
+ * 1. Create own ReflectionUtils class to gather here all actions
+ *    For instance, setValueForPrivateField(object, "field name", value)
+ * 2. Use Java8 features
+ *
+ * */
 
 public class ReflectionApp {
     public void runApp() {
@@ -63,16 +72,14 @@ public class ReflectionApp {
         try {
             System.out.println("Constructor name - " + clazz.getConstructor(String.class).getName());
 
-            Method [] methodWithAnn = clazz.getMethods();
+            Method[] methodWithAnn = clazz.getMethods();
 
             System.out.println("All methods: ");
-            for (Method method : methodWithAnn){
-                System.out.println(method);
-            }
+            Stream.of(methodWithAnn).forEach(System.out::println);
 
             System.out.println("Run method with parameters");
             Method methodParam = clazz.getDeclaredMethod("printParam", String.class, int.class);
-            methodParam.invoke(object , "Param value", 12);
+            methodParam.invoke(object, "Param value", 12);
 
 
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
@@ -95,13 +102,13 @@ public class ReflectionApp {
 
             System.out.println("Annotation value - " + myAnnotation.value());
 
-            Method [] methodWithAnn = clazz.getDeclaredMethods();
+            Method[] methodWithAnn = clazz.getDeclaredMethods();
 
-            for (Method method : methodWithAnn){
-                if(method.isAnnotationPresent(MyAnnotation.class)) {
+            Stream.of(methodWithAnn).forEach(method -> {
+                if (method.isAnnotationPresent(MyAnnotation.class)) {
                     System.out.println("Method name with annotation 'MyAnnotation' - " + method);
                 }
-            }
+            });
 
         } catch (NoSuchMethodException e) {
             e.printStackTrace();

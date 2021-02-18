@@ -1,5 +1,7 @@
-package com.epam.stepsdef;
+package com.epam.definitions;
 
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -10,27 +12,61 @@ import reflection.service.ReflectionService;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static reflection.service.ReflectionService.setValueForPrivateField;
 
-public class ReflectionTest {
+/*
+ * TODO
+ * 3. Use formatter at least default in IDEA
+ * */
 
+public class ReflectionDefinitions {
+    private static Map<String, Boolean> methodMap = new LinkedHashMap<>();
+
+    @Before
+    public void sutUp() {
+        Class clazz = SumClass.class;
+        Method[] methodWithAnn = clazz.getDeclaredMethods();
+        for (Method method : methodWithAnn) {
+            if (method.isAnnotationPresent(Invoke.class)) {
+                boolean value = method.getAnnotation(Invoke.class).flag();
+                methodMap.put(method.getName(), value);
+            }
+        }
+    }
+
+    @After
+    public void cleanUp() throws NoSuchFieldException, IllegalAccessException {
+        Class clazz = SumClass.class;
+        Method[] methodWithAnn = clazz.getDeclaredMethods();
+        for (Method method : methodWithAnn) {
+            if (method.isAnnotationPresent(Invoke.class)) {
+                boolean value = method.getAnnotation(Invoke.class).flag();
+                boolean storedValue = methodMap.get(method.getName());
+                if (storedValue != value) {
+                    setValueForPrivateField(method.getAnnotation(Invoke.class), "flag", true);
+                }
+            }
+        }
+
+    }
 
     @Given("^Verify class name$")
-    public void verifyClass(){
-        SumClass sumClass = new SumClass();
-        Class clazz = sumClass.getClass();
+    public void verifyClass() {
+        Class clazz = SumClass.class;
 
-        assertEquals(clazz.getName(),"reflection.data.SumClass");
-
+        assertEquals(clazz.getName(), "reflection.data.SumClass");
     }
 
     @Then("^Verify getter returns expected value of field which was set by reflection$")
     public void verifyGetter() throws NoSuchFieldException, IllegalAccessException {
         SumClass sumClass = new SumClass();
         int checkInt = 6;
-        Class clazz = sumClass.getClass();
+        Class clazz = SumClass.class;
 
         Field field = clazz.getDeclaredField("sum");
         boolean flag = field.isAccessible();
@@ -74,7 +110,7 @@ public class ReflectionTest {
         int declaredField = field.getInt(sumClass);
         field.setAccessible(flag);
 
-        assertEquals( declaredField, checkInt);
+        assertEquals(declaredField, checkInt);
 
     }
 
@@ -84,8 +120,8 @@ public class ReflectionTest {
         Class clazz = sumClass.getClass();
         Method[] listMethod = clazz.getDeclaredMethods();
 
-        for (Method method : listMethod){
-            if (method.isAnnotationPresent(Invoke.class)){
+        for (Method method : listMethod) {
+            if (method.isAnnotationPresent(Invoke.class)) {
                 assertTrue(method.getAnnotation(Invoke.class).flag());
             }
         }

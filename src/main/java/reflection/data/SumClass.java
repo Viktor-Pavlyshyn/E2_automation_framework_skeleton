@@ -8,17 +8,17 @@ public class SumClass {
     private int sum = 0;
 
     @Invoke
-    public void plusOne(){
-        sum+=1;
+    public void plusOne() {
+        sum += 1;
     }
 
     @Invoke
-    public void plusTwo(){
-        sum+=2;
+    public void plusTwo() {
+        sum += 2;
     }
 
     @Invoke
-    public void plusThree(){
-        sum+=3;
+    public void plusThree() {
+        sum += 3;
     }
 }

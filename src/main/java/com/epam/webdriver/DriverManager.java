@@ -3,15 +3,15 @@ package com.epam.webdriver;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 
-import static com.epam.webdriver.LocalDriverFactory.createWebDriver;
+import static com.epam.webdriver.DriverLoader.createWebDriver;
 
 @Log4j2
-public class LocalDriverManager {
+public class DriverManager {
     private static final ThreadLocal<WebDriver> DRIVER_POOL = new ThreadLocal<>();
 
     public static WebDriver getWebDriver() {
         if (DRIVER_POOL.get() == null) {
-            synchronized (LocalDriverManager.class) {
+            synchronized (DriverManager.class) {
                 if (DRIVER_POOL.get() == null) {
                     log.info("Setting WebDriver to DRIVER_POOL.");
                     DRIVER_POOL.set(createWebDriver());

@@ -7,6 +7,6 @@ import org.openqa.selenium.support.FindBy;
 @Getter
 public class ResultSearchGooglePage extends AbstractPage {
 
-    @FindBy(xpath = "//h2[@class='qrShPb kno-ecr-pt PZPZlf mfMhoc']/span")
-    private WebElement wikipediaTitle;
+    @FindBy(xpath = "//div[@id='res']//div[@class='g']")
+    private WebElement firstLinkApple;
 }

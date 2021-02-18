@@ -2,7 +2,13 @@ package reflection.data;
 
 import reflection.annotation.MyAnnotation;
 
-public class SubClass extends SupperClass{
+/*
+ *TODO
+ * Make method parameters final
+ * */
+
+public class SubClass extends SupperClass {
+    //Added space here
     private String subClassNameField;
 
     public SubClass(String subClassNameField) {
@@ -14,7 +20,7 @@ public class SubClass extends SupperClass{
         return subClassNameField;
     }
 
-    public void printParam(String str, int number) {
-        System.out.println("String value - " + str + ", int - value - "+ number);
+    public void printParam(final String str, final int number) {
+        System.out.println("String value - " + str + ", int - value - " + number);
     }
 }
