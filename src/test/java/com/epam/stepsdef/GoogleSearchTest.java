@@ -5,7 +5,6 @@ import com.epam.businessobject.ResultSearchGoogleBO;
 import io.cucumber.java.After;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import org.apache.commons.lang3.StringUtils;
 
 import static com.epam.webdriver.LocalDriverManager.closeDriver;
 import static com.epam.webdriver.LocalDriverManager.getWebDriver;
@@ -15,7 +14,7 @@ public class GoogleSearchTest {
 
     /*
      *TODO
-     * 1. Alternative pattern style
+     * 1. Cucumber alternative pattern style
      *
      **/
 
