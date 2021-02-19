@@ -8,7 +8,7 @@ import reflection.annotation.MyAnnotation;
  * */
 
 public class SubClass extends SupperClass {
-    //Added space here
+
     private String subClassNameField;
 
     public SubClass(String subClassNameField) {
