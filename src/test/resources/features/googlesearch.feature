@@ -1,5 +1,7 @@
 Feature:Google search verification
 
+#  TODO Rewrite step definitions from User perspective
+
   @skeleton
   Scenario Outline: Verify wikipedia title after searching
     Given open "<url>"
