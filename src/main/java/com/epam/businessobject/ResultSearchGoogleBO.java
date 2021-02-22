@@ -1,16 +1,10 @@
 package com.epam.businessobject;
 
-import com.epam.pageobject.ResultSearchGooglePage;
-
-public class ResultSearchGoogleBO {
-
-    private final ResultSearchGooglePage resultSearchGooglePage;
-
-    public ResultSearchGoogleBO() {
-        this.resultSearchGooglePage = new ResultSearchGooglePage();
-    }
+public class ResultSearchGoogleBO extends BaseBO {
 
     public String getLinkTextByPosition(int linkNumber) {
-        return resultSearchGooglePage.getListTextLinks().get(linkNumber);
+        return poProvider.getResultSearchGooglePage()
+                .getListTextLinks()
+                .get(linkNumber);
     }
 }
