@@ -8,6 +8,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Stream;
 
 public class ReflectionService {
 
@@ -21,15 +23,16 @@ public class ReflectionService {
     @SuppressWarnings("unchecked")
     public static Object setValueForPrivateField(Annotation annotation, String key, Object newValue) throws NoSuchFieldException, IllegalAccessException {
         Object handler = Proxy.getInvocationHandler(annotation);
-        Field f;
-        f = handler.getClass().getDeclaredField("memberValues");
+
+        Field f = handler.getClass().getDeclaredField("memberValues");
 
         f.setAccessible(true);
         Map<String, Object> memberValues;
         memberValues = (Map<String, Object>) f.get(handler);
 
         Object oldValue = memberValues.get(key);
-        if (oldValue == null || oldValue.getClass() != newValue.getClass()) {
+
+        if (Objects.isNull(oldValue) || oldValue.getClass() != newValue.getClass()) {
             throw new IllegalArgumentException();
         }
 
@@ -37,16 +40,24 @@ public class ReflectionService {
         return oldValue;
     }
 
-
-    public int getCalculatedValue(Object object) throws InvocationTargetException, IllegalAccessException, NoSuchFieldException {
+    public int getCalculatedValue(Object object) throws IllegalAccessException, NoSuchFieldException {
         Class clazz = object.getClass();
         Method[] methods = clazz.getDeclaredMethods();
 
-        for (Method method : methods) {
+        Stream.of(methods).forEach(method -> {
             if (method.isAnnotationPresent(Invoke.class) && method.getAnnotation(Invoke.class).flag()) {
-                method.invoke(object);
+                try {
+                    method.invoke(object);
+                } catch (IllegalAccessException | InvocationTargetException e) {
+                    e.printStackTrace();
+                }
             }
-        }
+        });
+//        for (Method method : methods) {
+//            if (method.isAnnotationPresent(Invoke.class) && method.getAnnotation(Invoke.class).flag()) {
+//                method.invoke(object);
+//            }
+//        }
 
         Field field = clazz.getDeclaredField("sum");
 

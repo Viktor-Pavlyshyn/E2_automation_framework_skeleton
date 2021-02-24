@@ -8,15 +8,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.stream.Stream;
 
-/*
- *TODO
- * 1. Create own ReflectionUtils class to gather here all actions
- *    For instance, setValueForPrivateField(object, "field name", value)
- * 2. Use Java8 features
- *
- * */
-
 public class ReflectionApp {
+
     public void runApp() {
         SubClass subClass = new SubClass("subClass value");
 

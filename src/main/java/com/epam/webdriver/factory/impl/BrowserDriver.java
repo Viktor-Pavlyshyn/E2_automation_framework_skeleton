@@ -15,9 +15,9 @@ public class BrowserDriver extends AbstractDriver {
     protected Driver createDriver(String browser) {
         Driver driver = null;
 
-        if(equalsIgnoreCase(browser,CHROME)){
+        if (equalsIgnoreCase(browser, CHROME)) {
             driver = new Chrome();
-        } else if (equalsIgnoreCase(browser,FIREFOX)){
+        } else if (equalsIgnoreCase(browser, FIREFOX)) {
             driver = new Firefox();
         }
         return driver;

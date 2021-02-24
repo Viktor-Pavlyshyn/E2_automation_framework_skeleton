@@ -1,12 +1,12 @@
 package com.epam.definitions;
 
 import com.epam.businessobject.BOProvider;
-import com.epam.businessobject.GoogleSearchBO;
-import com.epam.businessobject.ResultSearchGoogleBO;
+import io.cucumber.java.After;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import static com.epam.webdriver.DriverManager.closeDriver;
 import static com.epam.webdriver.DriverManager.getWebDriver;
 import static org.junit.Assert.assertTrue;
 
@@ -35,5 +35,10 @@ public class GoogleSearchDefinitions {
                 .getLinkTextByPosition(position);
 
         assertTrue(String.format("Text does not contains - '%s'.", text), response.matches("([\\s\\S]*)" + text + "([\\s\\S]*)"));
+    }
+
+    @After
+    public void closeSite() {
+        closeDriver();
     }
 }

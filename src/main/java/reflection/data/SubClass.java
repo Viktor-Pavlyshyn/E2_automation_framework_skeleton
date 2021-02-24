@@ -2,11 +2,6 @@ package reflection.data;
 
 import reflection.annotation.MyAnnotation;
 
-/*
- *TODO
- * Make method parameters final
- * */
-
 public class SubClass extends SupperClass {
 
     private String subClassNameField;
