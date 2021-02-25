@@ -7,7 +7,8 @@ import org.openqa.selenium.WebDriver;
 
 @Log4j2
 public class DriverLoader {
-
+//    TODO:
+//    Refactor browser manager in scope of pattern module
     public static WebDriver createWebDriver() {
 
         DataPropLoader dataProp = new DataPropLoader();

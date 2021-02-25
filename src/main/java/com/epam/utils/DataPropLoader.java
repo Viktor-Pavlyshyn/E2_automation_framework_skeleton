@@ -10,6 +10,11 @@ public class DataPropLoader {
         private final String propertyPath = "src/main/resources/browser.properties";
         private Properties props = new Properties();
 
+//    TODO:
+//    Try to rewrite code using try with parameter to input input stream
+//    Try to use more abstract type for field if there no needs to use more specific one for input stream
+//    Create methods which will read on demand from different files. Not in constructor. For now it always
+//    read browser.properties. You have to organize code to be able to reuse it without changes for other properties
         public DataPropLoader() {
             FileInputStream fis;
 

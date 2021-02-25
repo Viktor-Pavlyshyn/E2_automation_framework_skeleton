@@ -3,7 +3,8 @@ package reflection.data;
 import reflection.annotation.MyAnnotation;
 
 public class SubClass extends SupperClass {
-
+//    TODO:
+//    Discuss about final
     private String subClassNameField;
 
     public SubClass(String subClassNameField) {

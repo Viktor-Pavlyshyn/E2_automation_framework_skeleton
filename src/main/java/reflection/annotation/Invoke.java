@@ -9,5 +9,5 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Invoke {
 
-    boolean flag() default true;
+    boolean state() default true;
 }
