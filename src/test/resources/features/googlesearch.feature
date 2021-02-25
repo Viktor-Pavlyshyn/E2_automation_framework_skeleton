@@ -1,13 +1,11 @@
 Feature:Google search verification
 
-#  TODO Rewrite step definitions from User perspective
-
   @skeleton
   Scenario Outline: Verify wikipedia title after searching
     Given open "<url>"
-    Then enter "<value>" and search
-    Then verify if wikipedia title contains text "<value>"
+    When enter "<value>" and search
+    Then verify link on position <position> contains text "<value>"
 
     Examples:
-      | url                     | value |
-      | https://www.google.com/ | apple |
+      | url                     | value | position |
+      | https://www.google.com/ | Apple | 1        |

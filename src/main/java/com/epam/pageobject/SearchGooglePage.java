@@ -10,4 +10,9 @@ public class SearchGooglePage extends AbstractPage {
     @FindBy(xpath = "//input[@name='q']")
     private WebElement searchInput;
 
+    public SearchGooglePage inputAndSubmit(String inputValue) {
+        searchInput.sendKeys(inputValue);
+        searchInput.submit();
+        return this;
+    }
 }
