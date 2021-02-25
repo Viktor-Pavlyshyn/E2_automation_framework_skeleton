@@ -7,13 +7,15 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Stream;
 
 public class ReflectionService {
+    private static Map<String, Boolean> methodMap = new LinkedHashMap<>();
 
-    public void setAnnotationValueByName(Object object, String name) throws NoSuchMethodException, NoSuchFieldException, IllegalAccessException {
+    public static void setAnnotationValueByName(Object object, String name) throws NoSuchMethodException, NoSuchFieldException, IllegalAccessException {
         Class clazz = object.getClass();
         Method methodWithAnn = clazz.getDeclaredMethod(name);
         Invoke myInvoke = methodWithAnn.getAnnotation(Invoke.class);
@@ -40,7 +42,7 @@ public class ReflectionService {
         return oldValue;
     }
 
-    public int getCalculatedValue(Object object) throws IllegalAccessException, NoSuchFieldException {
+    public static int getCalculatedValue(Object object) throws IllegalAccessException, NoSuchFieldException {
         Class clazz = object.getClass();
         Method[] methods = clazz.getDeclaredMethods();
 
@@ -68,5 +70,34 @@ public class ReflectionService {
         field.setAccessible(flag);
 
         return (int) declaredField;
+    }
+
+    public static void saveAnnotation(Object object) {
+        Class clazz = object.getClass();
+        Method[] methodWithAnn = clazz.getDeclaredMethods();
+        Stream.of(methodWithAnn).forEach(method -> {
+            if (method.isAnnotationPresent(Invoke.class)) {
+                boolean value = method.getAnnotation(Invoke.class).flag();
+                methodMap.put(method.getName(), value);
+            }
+        });
+    }
+
+    public static void returnDefaultAnnotation(Object object) {
+        Class clazz = object.getClass();
+        Method[] methodWithAnn = clazz.getDeclaredMethods();
+        Stream.of(methodWithAnn).forEach(method -> {
+            if (method.isAnnotationPresent(Invoke.class)) {
+                boolean value = method.getAnnotation(Invoke.class).flag();
+                boolean storedValue = methodMap.get(method.getName());
+                if (storedValue != value) {
+                    try {
+                        setValueForPrivateField(method.getAnnotation(Invoke.class), "flag", true);
+                    } catch (NoSuchFieldException | IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
     }
 }

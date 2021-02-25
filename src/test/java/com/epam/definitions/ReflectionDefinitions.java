@@ -4,21 +4,19 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import reflection.annotation.Invoke;
-import reflection.service.ReflectionService;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.LinkedHashMap;
-import java.util.Map;
+
 import java.util.stream.Stream;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static reflection.service.ReflectionService.setValueForPrivateField;
+import static reflection.service.ReflectionService.*;
 
 public class ReflectionDefinitions {
-    private static Map<String, Boolean> methodMap = new LinkedHashMap<>();
+
     private Class clazz;
     private Object object;
 
@@ -70,7 +68,7 @@ public class ReflectionDefinitions {
     @Then("Verify method = {string} with annotation false value annotation value and expected sum = {int}")
     public void verifyAnnotationValue(String nameMethod, int expectedSum) throws NoSuchFieldException, IllegalAccessException, NoSuchMethodException {
 
-        saveAnnotation();
+        saveAnnotation(object);
 
         Method[] listMethod = clazz.getDeclaredMethods();
 
@@ -80,40 +78,12 @@ public class ReflectionDefinitions {
             }
         });
 
-        ReflectionService reflectionService = new ReflectionService();
-        reflectionService.setAnnotationValueByName(object, nameMethod);
-
-        int sum = reflectionService.getCalculatedValue(object);
+        setAnnotationValueByName(object, nameMethod);
+        int sum = getCalculatedValue(object);
 
         assertEquals(sum, expectedSum);
 
-        returnDefaultAnnotation();
+        returnDefaultAnnotation(object);
     }
 
-    public void saveAnnotation() {
-        Method[] methodWithAnn = clazz.getDeclaredMethods();
-        Stream.of(methodWithAnn).forEach(method -> {
-            if (method.isAnnotationPresent(Invoke.class)) {
-                boolean value = method.getAnnotation(Invoke.class).flag();
-                methodMap.put(method.getName(), value);
-            }
-        });
-    }
-
-    public void returnDefaultAnnotation(){
-        Method[] methodWithAnn = clazz.getDeclaredMethods();
-        Stream.of(methodWithAnn).forEach(method -> {
-            if (method.isAnnotationPresent(Invoke.class)) {
-                boolean value = method.getAnnotation(Invoke.class).flag();
-                boolean storedValue = methodMap.get(method.getName());
-                if (storedValue != value) {
-                    try {
-                        setValueForPrivateField(method.getAnnotation(Invoke.class), "flag", true);
-                    } catch (NoSuchFieldException | IllegalAccessException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        });
-    }
 }
