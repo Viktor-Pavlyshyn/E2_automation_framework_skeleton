@@ -6,7 +6,7 @@ import patterns.core.strategy.share.shareimpl.ShareEmail;
 import patterns.core.strategy.share.shareimpl.ShareSocialMedia;
 import patterns.core.strategy.share.shareimpl.ShareText;
 
-public class StrategyRun {
+public class StrategyTest {
     public static void main(String[] args) {
         PhoneCameraApp basicCameraSM = new BasicCameraApp(new ShareSocialMedia());
 

@@ -5,7 +5,7 @@ import patterns.core.adapter.Duck;
 import patterns.core.adapter.droneimpl.SuperDrone;
 import patterns.core.adapter.duckimpl.MallardDuck;
 
-public class AdapterRun {
+public class AdapterTest {
     public static void main(String[] args) {
         testDuck(new MallardDuck());
 
