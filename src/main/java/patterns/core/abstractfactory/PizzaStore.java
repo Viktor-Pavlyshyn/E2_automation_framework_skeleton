@@ -1,4 +1,4 @@
-package patterns.core.factorymethod;
+package patterns.core.abstractfactory;
 
 public abstract class PizzaStore {
 
@@ -11,5 +11,13 @@ public abstract class PizzaStore {
         pizza.cut();
         pizza.box();
         return pizza;
+    }
+
+    protected abstract Pay choiceOfPayment(String name);
+
+    public Pay payForThePizza(String namePayment){
+        Pay pay = choiceOfPayment(namePayment);
+        pay.pyaForTheOrder();
+        return pay;
     }
 }

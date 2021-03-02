@@ -1,4 +1,4 @@
-package patterns.core.factorymethod.storeimple;
+package patterns.core.factorymethod.storeimpl;
 
 import patterns.core.factorymethod.Pizza;
 import patterns.core.factorymethod.PizzaStore;
