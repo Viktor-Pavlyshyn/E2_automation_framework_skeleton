@@ -1,6 +1,6 @@
 package patterns.main;
 
-import patterns.core.Cafe;
+import patterns.core.iterator.Cafe;
 import patterns.core.iterator.menu.DinerMenu;
 import patterns.core.iterator.menu.PancakeHouseMenu;
 

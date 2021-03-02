@@ -1,6 +1,4 @@
-package patterns.core;
-
-import patterns.core.iterator.Menu;
+package patterns.core.iterator;
 
 import java.util.Iterator;
 
