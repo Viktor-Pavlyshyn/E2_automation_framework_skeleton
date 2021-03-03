@@ -2,7 +2,6 @@ package patterns.core.state.stateimple;
 
 import patterns.core.state.Context;
 import patterns.core.state.State;
-import patterns.core.state.stateimple.UnlockedState;
 
 public class LockedState implements State {
     @Override

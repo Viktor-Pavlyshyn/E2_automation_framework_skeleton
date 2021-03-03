@@ -14,6 +14,5 @@ public class StateTest {
 
         context.pushRequest();
         context.pushRequest();
-
     }
 }
