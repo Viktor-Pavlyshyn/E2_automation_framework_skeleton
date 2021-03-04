@@ -1,4 +1,4 @@
-package patterns.core.Proxy;
+package patterns.core.proxy;
 
 public class ProxyCar implements Car {
     Car car;

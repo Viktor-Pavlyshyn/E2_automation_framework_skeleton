@@ -1,8 +1,8 @@
 package patterns.main;
 
-import patterns.core.Proxy.BMW;
-import patterns.core.Proxy.Car;
-import patterns.core.Proxy.ProxyCar;
+import patterns.core.proxy.BMW;
+import patterns.core.proxy.Car;
+import patterns.core.proxy.ProxyCar;
 
 public class ProxyTest {
     public static void main(String[] args) {

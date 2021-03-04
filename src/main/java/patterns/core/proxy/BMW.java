@@ -1,4 +1,4 @@
-package patterns.core.Proxy;
+package patterns.core.proxy;
 
 public class BMW  implements Car{
     @Override

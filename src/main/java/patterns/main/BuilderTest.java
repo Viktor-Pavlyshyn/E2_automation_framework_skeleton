@@ -1,15 +1,17 @@
 package patterns.main;
 
-import patterns.core.builder.SportCar;
+import patterns.core.builder.Car;
+import patterns.core.builder.CarBuilder;
+import patterns.core.builder.Director;
 
 public class BuilderTest {
     public static void main(String[] args) {
-        SportCar sportCar = new SportCar.Builder("BMW")
-                .setColor("black")
-                .setMaxSpeed(180)
-                .build();
-        System.out.println(sportCar.getName());
-        System.out.println(sportCar.getColor());
-        System.out.println(sportCar.getMaxSpeed());
+        CarBuilder builder = new CarBuilder();
+        Director director = new Director();
+
+        director.constructSportsCar(builder);
+        Car car = builder.getResult();
+
+        System.out.println(car.toString());
     }
 }
