@@ -4,6 +4,9 @@ package patterns.main;
 import patterns.core.abstractfactory.Pay;
 import patterns.core.abstractfactory.Pizza;
 import patterns.core.abstractfactory.PizzaStore;
+import patterns.core.abstractfactory.newabstractfactory.FurnitureFactory;
+import patterns.core.abstractfactory.newabstractfactory.factoryimpl.ModernFactory;
+import patterns.core.abstractfactory.newabstractfactory.factoryimpl.VictorianFactory;
 import patterns.core.abstractfactory.storeimpl.ChicagoStylePizzaStore;
 import patterns.core.abstractfactory.storeimpl.NYStylePizzaStore;
 
@@ -24,5 +27,16 @@ public class AbstractFactoryTest {
 
         Pay payInCard = nyStore.payForThePizza("cash");
         System.out.println(payInCard.getClass().getSimpleName() + " done.");
+
+
+        ///// new factory
+        FurnitureFactory modern = new ModernFactory();
+        FurnitureFactory victorian = new VictorianFactory();
+
+        modern.createChair();
+        modern.createSofa();
+
+        victorian.createChair();
+        victorian.createSofa();
     }
 }

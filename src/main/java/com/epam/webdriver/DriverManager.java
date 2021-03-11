@@ -3,7 +3,7 @@ package com.epam.webdriver;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 
-import static com.epam.webdriver.DriverLoader.createWebDriver;
+import static com.epam.webdriver.DriverFactory.createWebDriver;
 
 @Log4j2
 public class DriverManager {

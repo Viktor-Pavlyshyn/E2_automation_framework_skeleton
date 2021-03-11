@@ -1,14 +1,14 @@
-package com.epam.webdriver.drivers.impl;
+package com.epam.webdriver.driver;
 
-import com.epam.webdriver.drivers.Driver;
+import com.epam.webdriver.AbstractDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class Chrome implements Driver {
+public class Chrome extends AbstractDriver {
 
     @Override
-    public WebDriver setUpDriver() {
+    protected WebDriver createDriver() {
         WebDriverManager.chromedriver().setup();
         return new ChromeDriver();
     }
