@@ -1,28 +1,29 @@
 package com.epam.webdriver;
 
+import com.epam.exeption.NoSuchWebDriverFactoryException;
 import com.epam.utils.DataPropLoader;
-import com.epam.webdriver.driver.Chrome;
-import com.epam.webdriver.driver.Firefox;
-import lombok.extern.log4j.Log4j2;
+import com.epam.webdriver.driverfactory.ChromeDriverFactory;
+import com.epam.webdriver.driverfactory.FirefoxDriverFactory;
 import org.openqa.selenium.WebDriver;
 
 import static org.apache.commons.lang3.StringUtils.equalsIgnoreCase;
 import static org.openqa.selenium.remote.BrowserType.CHROME;
 import static org.openqa.selenium.remote.BrowserType.FIREFOX;
 
-@Log4j2
-public class DriverFactory {
+public abstract class WebDriverFactory {
 
-    public static WebDriver createWebDriver() {
+    protected abstract WebDriver createDriver();
+
+    public static WebDriverFactory getCreatedDriver() {
         DataPropLoader dataProp = new DataPropLoader();
         String browser = System.getProperty("browser", dataProp.getDefaultBrowser());
 
         if (equalsIgnoreCase(browser, CHROME)) {
-            return new Chrome().getCreatedDriver();
+            return new ChromeDriverFactory();
         } else if (equalsIgnoreCase(browser, FIREFOX)) {
-            return new Firefox().getCreatedDriver();
-        }else {
-            return new Chrome().getCreatedDriver();
+            return new FirefoxDriverFactory();
+        } else {
+            throw new NoSuchWebDriverFactoryException(String.format("%s are not supported.", browser));
         }
     }
 }

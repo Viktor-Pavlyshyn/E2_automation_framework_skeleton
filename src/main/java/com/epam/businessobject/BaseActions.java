@@ -2,11 +2,11 @@ package com.epam.businessobject;
 
 import com.epam.pageobject.POProvider;
 
-public class BaseBO {
+public class BaseActions {
 
     protected POProvider poProvider;
 
-    public BaseBO() {
+    public BaseActions() {
         poProvider = new POProvider();
     }
 }
