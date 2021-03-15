@@ -1,4 +1,4 @@
-package com.epam.businessobject;
+package com.epam.actions;
 
 import com.epam.pageobject.POProvider;
 

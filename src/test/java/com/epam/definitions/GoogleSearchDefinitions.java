@@ -1,7 +1,8 @@
 package com.epam.definitions;
 
-import com.epam.businessobject.ActionsProvider;
+import com.epam.actions.ActionsProvider;
 import com.epam.utils.data.SearchBuilder;
+import com.epam.utils.data.SearchData;
 import io.cucumber.java.After;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -21,21 +22,21 @@ public class GoogleSearchDefinitions {
 
     @When("enter {string} and search")
     public void search(String inputValue) {
-        String searchData = new SearchBuilder()
+        SearchData searchData = new SearchBuilder()
                 .addApple(inputValue)
                 .buildSearch();
 
         //TODO Create repository to verify and get instance of actions from here
         //TODO I prefer to name it like SomeFeatureActions
-        actionsProvider.getGoogleSearchBO()
-                .inputAndSearch(searchData);
+        actionsProvider.getSearchActions()
+                .inputAndSearch(searchData.getQuery());
 
     }
 
     @Then("verify link on position {int} contains text {string}")
     public void verifyTitle(int position, String text) {
 
-        final String response = actionsProvider.getResultSearchGoogleBO()
+        final String response = actionsProvider.getResultSearchActions()
                 .getLinkTextByPosition(position);
 
         assertTrue(String.format("Text does not contains - '%s'.", text), response.matches("([\\s\\S]*)" + text + "([\\s\\S]*)"));

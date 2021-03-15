@@ -3,11 +3,11 @@ package com.epam.webdriver;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 
-import static com.epam.webdriver.WebDriverFactory.getCreatedDriver;
+import static com.epam.webdriver.WebDriverFactory.getDriverFactory;
 
 @Log4j2
 public class DriverManager {
-    private static WebDriverFactory driverFactory = getCreatedDriver();
+    private static WebDriverFactory driverFactory = getDriverFactory();
 
     private static final ThreadLocal<WebDriver> DRIVER_POOL = new ThreadLocal<>();
 

@@ -1,16 +1,11 @@
 package com.epam.utils.data;
 
+import lombok.Getter;
 import lombok.Setter;
 
+@Getter
 @Setter
 public class SearchData {
-    private String apple = "";
-    private String ios = "";
-    private String mac = "";
-    private String iphone = "";
+    private String query = "";
 
-    @Override
-    public String toString() {
-        return apple + " " + ios + " " + mac + " " + iphone;
-    }
 }

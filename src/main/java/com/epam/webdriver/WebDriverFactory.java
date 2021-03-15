@@ -14,9 +14,9 @@ public abstract class WebDriverFactory {
 
     protected abstract WebDriver createDriver();
 
-    public static WebDriverFactory getCreatedDriver() {
-        DataPropLoader dataProp = new DataPropLoader();
-        String browser = System.getProperty("browser", dataProp.getDefaultBrowser());
+    public static WebDriverFactory getDriverFactory() {
+        DataPropLoader dataProp = DataPropLoader.getDataPropLoader();
+        String browser = System.getProperty("browser", dataProp.getProperty("browser"));
 
         if (equalsIgnoreCase(browser, CHROME)) {
             return new ChromeDriverFactory();

@@ -3,7 +3,6 @@ package com.epam.pageobject;
 import com.epam.elementdecorator.InputElement;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 @Log4j2
@@ -15,7 +14,7 @@ public class SearchGooglePage extends AbstractPage {
 
     public SearchGooglePage inputAndSubmit(String inputValue) {
         log.info("Perform search.");
-        searchInput.cleanBeforeSendKeys(inputValue);
+        searchInput.clearAndSendKeys(inputValue);
         searchInput.getWrappedElement().submit();
         return this;
     }

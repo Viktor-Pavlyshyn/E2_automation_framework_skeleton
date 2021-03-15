@@ -1,6 +1,6 @@
-package com.epam.businessobject;
+package com.epam.actions;
 
-public class ResultSearchGoogleActions extends BaseActions {
+public class ResultSearchActions extends BaseActions {
 
     public String getLinkTextByPosition(int linkNumber) {
         return poProvider.getResultSearchGooglePage()
