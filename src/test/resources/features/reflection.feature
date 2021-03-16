@@ -25,7 +25,7 @@ Feature: Refactor Reflection tests
 
   Scenario Outline: Additional task
     Given Class name - <className>
-    Then Verify method = <nameMethod> with annotation field name - <fieldAnnName> and value false  and expected sum = <sum>
+    Then Verify method = <nameMethod> with annotation field name - <fieldAnnName> and value false and expected sum = <sum>
     Examples:
       | className                  | nameMethod  | sum | fieldAnnName |
       | "reflection.data.SumClass" | "plusThree" | 3   | "state"      |
