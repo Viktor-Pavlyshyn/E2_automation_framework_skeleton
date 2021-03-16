@@ -6,7 +6,7 @@ public class SearchActions extends BaseActions {
 
     public SearchActions inputAndSearch(SearchData searchData) {
         poProvider.getSearchGooglePage()
-                .inputAndSubmit(searchData.getQuery());
+                .inputAndClickSearchButton(searchData.getQuery());
         return this;
     }
 }

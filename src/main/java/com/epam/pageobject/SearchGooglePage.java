@@ -18,7 +18,7 @@ public class SearchGooglePage extends AbstractPage {
     @FindBy(xpath = "//div[@class=\"tfB0Bf\"]//input[@class=\"gNO89b\"]")
     private WebElement buttonSearch;
 
-    public SearchGooglePage inputAndSubmit(String inputValue) {
+    public SearchGooglePage inputAndClickSearchButton(String inputValue) {
         log.info("Perform search.");
         searchInput.clearAndSendKeys(inputValue);
         fWaitUtil(ExpectedConditions.visibilityOf(buttonSearch)).click();
