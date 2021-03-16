@@ -7,5 +7,4 @@ import lombok.Setter;
 @Setter
 public class SearchData {
     private String query = "";
-
 }

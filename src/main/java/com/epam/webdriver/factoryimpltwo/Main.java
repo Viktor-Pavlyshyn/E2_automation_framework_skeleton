@@ -1,11 +1,10 @@
 package com.epam.webdriver.factoryimpltwo;
 
-import com.epam.webdriver.factoryimpltwo.driverfactory.ChromeDriverFactory;
-import org.openqa.selenium.WebDriver;
+import com.epam.webdriver.factoryimpltwo.driverfactory.ChromeDriverManager;
 
 public class Main {
     public static void main(String[] args) {
-        WebDriverFactory chromeFactory = new ChromeDriverFactory();
-        WebDriver driver = chromeFactory.createDriver();
+        DriverManager chromeFactory = new ChromeDriverManager();
+        chromeFactory.getWebDriver();
     }
 }

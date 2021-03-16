@@ -7,8 +7,8 @@ public class SearchBuilder {
         this.searchData = new SearchData();
     }
 
-    public SearchBuilder addApple(String query) {
-        searchData.setQuery(searchData.getQuery() + query);
+    public SearchBuilder query(String query) {
+        searchData.setQuery(query);
         return this;
     }
 

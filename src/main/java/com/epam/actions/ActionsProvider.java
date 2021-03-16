@@ -16,5 +16,4 @@ public class ActionsProvider {
     public ResultSearchActions getResultSearchActions() {
         return Objects.isNull(resultSearchActions) ? resultSearchActions = new ResultSearchActions() : resultSearchActions;
     }
-
 }

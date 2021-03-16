@@ -9,18 +9,11 @@ import java.util.stream.Collectors;
 
 @Getter
 public class ResultSearchGooglePage extends AbstractPage {
-//    TODO:
-//    div[@Class='g'] is complex section with a lot of inner elements. It is not just link.
-//    Please rename methods like getResultSectionsText() for now
-//    We will refactor it in future modules
-//
-//    P.S Pay attention for naming from English perspective.
-//    getListTextLinks() sounds like we expect list of links named like 'List text'
-//    getLinksTextList() is better
-    @FindBy(xpath = "//div[@class='g']")
-    private List<WebElement> searchResultText;
 
-    public List<String> getListTextLinks() {
-        return searchResultText.stream().map(WebElement::getText).collect(Collectors.toList());
+    @FindBy(xpath = "//h3[@class=\"LC20lb DKV0Md\"][parent::a[@href=\"https://uk.wikipedia.org/wiki/Apple_Inc.\"]]")
+    private WebElement titleWikipedia;
+
+    public String getTextTitleWikipedia() {
+        return titleWikipedia.getText();
     }
 }

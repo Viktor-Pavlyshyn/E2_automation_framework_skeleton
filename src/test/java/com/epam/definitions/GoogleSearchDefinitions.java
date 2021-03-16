@@ -23,21 +23,19 @@ public class GoogleSearchDefinitions {
     @When("enter {string} and search")
     public void search(String inputValue) {
         SearchData searchData = new SearchBuilder()
-                .addApple(inputValue)
+                .query(inputValue)
                 .buildSearch();
 
-        //TODO Create repository to verify and get instance of actions from here
-        //TODO I prefer to name it like SomeFeatureActions
         actionsProvider.getSearchActions()
-                .inputAndSearch(searchData.getQuery());
+                .inputAndSearch(searchData);
 
     }
 
-    @Then("verify link on position {int} contains text {string}")
-    public void verifyTitle(int position, String text) {
+    @Then("verify text Title Wikipedia contains - {string}")
+    public void verifyTitle(String text) {
 
         final String response = actionsProvider.getResultSearchActions()
-                .getLinkTextByPosition(position);
+                .getLinkTextByPosition();
 
         assertTrue(String.format("Text does not contains - '%s'.", text), response.matches("([\\s\\S]*)" + text + "([\\s\\S]*)"));
     }
