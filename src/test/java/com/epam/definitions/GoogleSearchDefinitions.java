@@ -1,6 +1,6 @@
 package com.epam.definitions;
 
-import com.epam.actions.ActionsProvider;
+import com.epam.actions.ActionsRepository;
 import com.epam.utils.data.SearchBuilder;
 import com.epam.utils.data.SearchData;
 import io.cucumber.java.After;
@@ -13,7 +13,7 @@ import static com.epam.webdriver.DriverManager.getWebDriver;
 import static org.junit.Assert.assertTrue;
 
 public class GoogleSearchDefinitions {
-    protected ActionsProvider actionsProvider = new ActionsProvider();
+    protected ActionsRepository actionsRepository = new ActionsRepository();
 
     @Given("open {string}")
     public void openPage(String url) {
@@ -26,7 +26,7 @@ public class GoogleSearchDefinitions {
                 .query(inputValue)
                 .buildSearch();
 
-        actionsProvider.getSearchActions()
+        actionsRepository.getSearchActions()
                 .inputAndSearch(searchData);
 
     }
@@ -34,7 +34,7 @@ public class GoogleSearchDefinitions {
     @Then("verify text Title Wikipedia contains - {string}")
     public void verifyTitle(String text) {
 
-        final String response = actionsProvider.getResultSearchActions()
+        final String response = actionsRepository.getResultSearchActions()
                 .getLinkTextByPosition();
 
         assertTrue(String.format("Text does not contains - '%s'.", text), response.matches("([\\s\\S]*)" + text + "([\\s\\S]*)"));
