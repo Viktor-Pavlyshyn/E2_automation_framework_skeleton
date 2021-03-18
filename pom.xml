@@ -59,9 +59,15 @@
         <cucumber>6.1.1</cucumber>
         <gherkin>2.12.2</gherkin>
         <fasterxml.jackson.version>2.11.0</fasterxml.jackson.version>
+        <rest-assured>4.3.0</rest-assured>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>${rest-assured}</version>
+        </dependency>
 
         <dependency>
             <groupId>io.qameta.allure</groupId>

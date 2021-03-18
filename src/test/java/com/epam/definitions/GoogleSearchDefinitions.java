@@ -8,6 +8,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import static com.epam.slackintegration.SlackIntegration.postToSlack;
 import static com.epam.webdriver.DriverManager.closeDriver;
 import static com.epam.webdriver.DriverManager.getWebDriver;
 import static org.junit.Assert.assertTrue;
@@ -34,10 +35,16 @@ public class GoogleSearchDefinitions {
     @Then("verify text Title Wikipedia contains - {string}")
     public void verifyTitle(String text) {
 
-        final String response = actionsRepository.getResultSearchActions()
-                .getLinkTextByPosition();
+        final String textWiki = actionsRepository.getResultSearchActions()
+                .getTextTitleWikipedia();
 
-        assertTrue(String.format("Text does not contains - '%s'.", text), response.matches("([\\s\\S]*)" + text + "([\\s\\S]*)"));
+        if(textWiki.matches("([\\s\\S]*)")){
+            postToSlack(textWiki);
+        } else {
+        postToSlack("expected - " + text + ", but found - " + textWiki);
+    }
+
+        assertTrue(String.format("Text does not contains - '%s'.", text), textWiki.matches("([\\s\\S]*)" + text + "([\\s\\S]*)"));
     }
 
     @After
