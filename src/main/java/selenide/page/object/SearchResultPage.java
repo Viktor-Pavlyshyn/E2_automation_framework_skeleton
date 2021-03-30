@@ -1,5 +1,6 @@
 package selenide.page.object;
 
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import lombok.Getter;
@@ -13,7 +14,7 @@ import static com.codeborne.selenide.Selenide.$$x;
 @Getter
 public class SearchResultPage {
 
-    private final List<SelenideElement> contents = $$x("//input[@type=\"submit\"]");
+    private final List<SelenideElement> contents = $$x("//input[@type=\"submit\"]").shouldHave(CollectionCondition.size(2));
 
     @Step("Get size of Contents")
     public int getSizeOfContents(){

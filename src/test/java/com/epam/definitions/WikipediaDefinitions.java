@@ -1,14 +1,8 @@
 package com.epam.definitions;
 
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.WebDriverRunner;
-import com.codeborne.selenide.logevents.SelenideLogger;
-import com.codeborne.selenide.testng.SoftAsserts;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.qameta.allure.selenide.AllureSelenide;
 import selenide.actions.ActionsRepository;
 
 import static com.codeborne.selenide.Selenide.open;
@@ -75,6 +69,6 @@ public class WikipediaDefinitions {
     @Then ("verify Contents of Search Result")
     public void verifyTitleSearchResult(){
         final int size = actions.getSearchResultActions().getSizeOfContents();
-        assertEquals(32, size);
+        assertEquals(2, size);
     }
 }
