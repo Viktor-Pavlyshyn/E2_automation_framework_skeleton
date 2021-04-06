@@ -2,26 +2,26 @@
 Feature: Wikipedia
 
   Scenario: Verify wikipedia 1
-    Given open browser on url
-    When user clicks on About Wikipedia
-    Then verify title About Wikipedia
+    Given open page Wikipedia
+    And user navigates to the About Wikipedia page
+    Then verify About Wikipedia page has title "About"
 
   Scenario: Verify wikipedia 2
-    Given open browser on url
-    When user clicks on Community Portal
-    Then verify title Community Portal
+    Given open page Wikipedia
+    And user navigates to the Community Portal page
+    Then verify Community Portal page has title "Community"
 
   Scenario: Verify wikipedia 3
-    Given open browser on url
-    When user clicks on About Help Page
-    Then verify title About Help Page
+    Given open page Wikipedia
+    And user navigates to the About Help page
+    Then verify About Help Page Portal page has title "Help"
 
   Scenario: Verify wikipedia 4
-    Given open browser on url
-    When user clicks on About Talk Main
-    Then verify title About Talk Main
+    Given open page Wikipedia
+    And user navigates to the About Talk Main page
+    Then verify About Talk Main page has title "Talk"
 
   Scenario: Verify wikipedia 5
-    Given open browser on url
-    When user enters search value - "apple" and clicks on search button
-    Then verify Contents of Search Result
+    Given open page Wikipedia
+    When user uses search with value - "apple"
+    Then verify size 'Contents' item in Search Result page when user searches 'apple'

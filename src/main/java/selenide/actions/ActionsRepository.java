@@ -14,12 +14,12 @@ public class ActionsRepository extends Repository {
         return get(RefHelpActions.class);
     }
 
-    public WikipediaActions getWikipediaActions() {
-        return get(WikipediaActions.class);
+    public BaseActions getBaseActions() {
+        return get(BaseActions.class);
     }
 
-    public SearchResultActions getSearchResultActions() {
-        return get(SearchResultActions.class);
+    public SearchAppleResultActions getSearchAppleResultActions() {
+        return get(SearchAppleResultActions.class);
     }
 
     public RefTalkActions getRefTalkActions() {

@@ -12,9 +12,10 @@ import static com.codeborne.selenide.Selenide.$$x;
 
 @Log4j2
 @Getter
-public class SearchResultPage {
+public class SearchAppleResultPage {
 
-    private final List<SelenideElement> contents = $$x("//input[@type=\"submit\"]").shouldHave(CollectionCondition.size(2));
+    private final List<SelenideElement> contents = $$x("//li[contains(@class, \"toclevel-\")]")
+            .shouldHave(CollectionCondition.size(30));
 
     @Step("Get size of Contents")
     public int getSizeOfContents(){

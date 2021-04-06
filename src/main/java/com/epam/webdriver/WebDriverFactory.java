@@ -16,14 +16,32 @@ public abstract class WebDriverFactory {
     protected abstract WebDriver createDriver();
 
     public static WebDriverFactory getDriverFactory() {
+        return getPlaceOfLaunch();
+    }
+
+    private static WebDriverFactory getPlaceOfLaunch() {
+        String placeLaunch = System.getProperty("placeLaunch", getBrowserProperty("placeLaunch"));
+
+        if (equalsIgnoreCase(placeLaunch, "localLaunch")) {
+            return getLocalLaunch();
+        } else if (equalsIgnoreCase(placeLaunch, "remoteLaunch")) {
+            return getRemoteLaunch();
+        } else {
+            throw new RuntimeException();
+        }
+    }
+
+    private static WebDriverFactory getRemoteLaunch() {
+        return new SauceLabsDriverFactory();
+    }
+
+    private static WebDriverFactory getLocalLaunch() {
         String browser = System.getProperty("browser", getBrowserProperty("browser"));
 
         if (equalsIgnoreCase(browser, CHROME)) {
             return new ChromeDriverFactory();
         } else if (equalsIgnoreCase(browser, FIREFOX)) {
             return new FirefoxDriverFactory();
-        } else if (equalsIgnoreCase(browser, "sauceLabs")) {
-            return new SauceLabsDriverFactory();
         } else {
             throw new NoSuchWebDriverFactoryException(String.format("%s are not supported.", browser));
         }

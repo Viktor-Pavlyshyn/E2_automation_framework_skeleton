@@ -6,69 +6,70 @@ import io.cucumber.java.en.When;
 import selenide.actions.ActionsRepository;
 
 import static com.codeborne.selenide.Selenide.open;
+import static com.epam.utils.DataPropLoader.getBrowserProperty;
 import static org.junit.Assert.*;
 
 
 public class WikipediaDefinitions {
     protected ActionsRepository actions = new ActionsRepository();
 
-    @Given("open browser on url")
-    public void openBrowserOnUrl(){
-        open("https://en.wikipedia.org/");
+    @Given("open page Wikipedia")
+    public void openPageWikipedia(){
+        open(getBrowserProperty("base.url"));
     }
 
-    @When("user clicks on About Wikipedia")
-    public void userClicksOnAboutWikipedia(){
-        actions.getWikipediaActions().clickOnRefAboutWikipedia();
+    @When("user navigates to the About Wikipedia page")
+    public void userNavigatesToAboutWikipedia(){
+        actions.getBaseActions().clickOnRefAboutWikipedia();
     }
 
-    @When ("user clicks on Community Portal")
-    public void userClicksOnCommunityPortal(){
-        actions.getWikipediaActions().clickOnRefCommunityPortal();
+    @When ("user navigates to the Community Portal page")
+    public void userNavigatesToCommunityPortal(){
+        actions.getBaseActions().clickOnRefCommunityPortal();
     }
 
-    @When ("user clicks on About Help Page")
-    public void userClicksOnAboutHelpPage(){
-        actions.getWikipediaActions().clickOnRefHelp();
+    @When ("user navigates to the About Help page")
+    public void userNavigatesToAboutHelpPage(){
+        actions.getBaseActions().clickOnRefHelp();
     }
 
-    @When ("user clicks on About Talk Main")
-    public void userClicksOnAboutTalkMain(){
-        actions.getWikipediaActions().clickOnRefTalk();
+    @When ("user navigates to the About Talk Main page")
+    public void userNavigatesToAboutTalkMain(){
+        actions.getBaseActions().clickOnRefTalk();
     }
 
-    @Then ("verify title About Wikipedia")
-    public void verifyTitleAboutWikipedia(){
+    @Then ("verify About Wikipedia page has title {string}")
+    public void verifyTitleAboutWikipedia(String input){
         final String text = actions.getRefAboutWikipediaActions().getTextWikipediaAbout();
-        assertTrue(text.contains("About"));
+        assertTrue(text.contains(input));
     }
 
-    @Then ("verify title Community Portal")
-    public void verifyTitleCommunityPortal(){
+    @Then ("verify Community Portal page has title {string}")
+    public void verifyTitleCommunityPortal(String input){
         final String text = actions.getRefCommunityPortalActions().getTextWikipediaCommunityPortal();
-        assertTrue(text.contains("Community"));
+        assertTrue(text.contains(input));
     }
 
-    @Then ("verify title About Help Page")
-    public void verifyTitleAboutHelpPage(){
+    @Then ("verify About Help Page Portal page has title {string}")
+    public void verifyTitleAboutHelpPage(String input){
         final String text = actions.getRefHelpActions().getTextHelpContents();
-        assertTrue(text.contains("Help"));
+        assertTrue(text.contains(input));
     }
 
-    @Then ("verify title About Talk Main")
-    public void verifyTitleAboutTalkMain(){
+    @Then ("verify About Talk Main page has title {string}")
+    public void verifyTitleAboutTalkMain(String input){
         final String text = actions.getRefTalkActions().getTextTalkMain();
-        assertTrue(text.contains("Talk"));
+        assertTrue(text.contains(input));
     }
 
-    @When("user enters search value - {string} and clicks on search button")
-    public void enterSearchValueAndClicksOnSearchButton(String inputValue){
-        actions.getWikipediaActions().inputSearchValueAndClickSearchButton(inputValue);
+    @When("user uses search with value - {string}")
+    public void userUsesSearchWithValue(String inputValue){
+        actions.getBaseActions().inputSearchValueAndClickSearchButton(inputValue);
     }
 
-    @Then ("verify Contents of Search Result")
-    public void verifyTitleSearchResult(){
-        final int size = actions.getSearchResultActions().getSizeOfContents();
-        assertEquals(2, size);
+    @Then ("verify size 'Contents' item in Search Result page when user searches 'apple'")
+    public void verifySizeItemInSearchResult(){
+        final int size = actions.getSearchAppleResultActions().getSizeOfContents();
+        assertEquals(30, size);
     }
 }

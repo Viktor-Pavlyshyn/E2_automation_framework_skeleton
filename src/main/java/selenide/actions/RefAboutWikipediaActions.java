@@ -1,9 +1,13 @@
 package selenide.actions;
 
-public class RefAboutWikipediaActions extends BaseActions {
+import io.qameta.allure.Step;
+import selenide.page.object.RefAboutWikipediaPage;
 
+public class RefAboutWikipediaActions extends BaseActions {
+    private final RefAboutWikipediaPage refAboutWikipediaPage = new RefAboutWikipediaPage();
+
+    @Step("Get text form title Wikipedia About")
     public String getTextWikipediaAbout() {
-        return poProvider.getRefAboutWikipediaPage()
-                .getTextWikipediaAbout();
+        return refAboutWikipediaPage.getTextWikipediaAbout();
     }
 }

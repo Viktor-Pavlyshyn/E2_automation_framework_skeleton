@@ -23,4 +23,8 @@ public class DataPropLoader {
     public static String getSauceLabsProperty(String keyProp) {
         return loadProperties("sauceLabs.properties", keyProp);
     }
+
+    public static String getSlackProperty(String keyProp) {
+        return loadProperties("slack.properties", keyProp);
+    }
 }

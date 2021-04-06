@@ -19,10 +19,15 @@ public class WikipediaPage {
      private final SelenideElement inputSearch = $x("//input[@type=\"search\"]");
      private final SelenideElement searchButton = $x("//input[@type=\"submit\"]");
 
-     @Step("Input - {inputValue} And click on search button")
-     public void inputSearchValueAndClickSearchButton(String inputValue){
-          log.info("Click on RefCommunityPortal");
+     @Step("Input search value- {inputValue}")
+     public void inputSearchValue(String inputValue){
+          log.info("Input search value");
           inputSearch.setValue(inputValue);
+     }
+
+     @Step("Click on search button")
+     public void clickSearchButton(){
+          log.info("Click on search button");
           searchButton.shouldBe(Condition.visible).click();
      }
 
